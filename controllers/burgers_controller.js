@@ -13,15 +13,15 @@ router.get('/', function(req,res) {
 });
 
 router.get('/index', function (req,res) {
-  console.log(req);
-  models.burger.findAll({}).then(function(data){
+  console.log(JSON.req);
+  models.burgers.findAll({}).then(function(data){
     var cheeseBurgers = {burger: data};
     res.render('/index', cheeseBurgers);
   });
 });
 
 router.post('/burger/create', function(req,res) {
-  models.burger.create({
+  models.burgers.create({
     burger_name: req.body.burger_name,
     devoured: false
   }
@@ -31,7 +31,7 @@ router.post('/burger/create', function(req,res) {
 });
 
 router.post('/burger/eat/:id', function(req,res) {
-  models.burger.findOne({where: {id: req.params.id}}).then(function(eaten){
+  models.burgers.findOne({where: {id: req.params.id}}).then(function(eaten){
     eaten.update({
       devoured: true,
     }).then(function() {
