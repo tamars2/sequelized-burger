@@ -1,0 +1,16 @@
+#burger {
+	height: 200px;
+}
+
+img, #submit, #input-area {
+    display: block;
+    margin: auto;
+}
+
+#title, .center {
+	text-align: center;
+}
+
+body {
+	background-color: #ffd867;
+}
