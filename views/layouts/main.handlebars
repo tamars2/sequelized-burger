@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Eat-Da-Burger!</title>
+      <link rel="icon" href="/assets/img/burger.ico">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- CSS -->
+      <link rel="stylesheet" href="/assets/css/burger_style.css">
+    </head>
+    <body>
+      <div class="container">
+        <br>
+        <div class="row">
+          <img src="/assets/img/burger.jpg" id="burger">
+        </div>
+        <h1 id="title">Eat-Da-Burger!</h1>
+        <hr>
+        {{{body}}}
+        <hr>
+        <form action="burger/create" method="POST">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="form-group col-md-6">
+              <textarea class="form-control" columns="8" rows="1" id="new_burger" name="burger_name"></textarea>
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+          <button id="submit" type="submit" class="btn btn-danger">Add-A-Burger</button>
+        </form>
+        <br>
+      </div>
+    </body>
+  </html>
