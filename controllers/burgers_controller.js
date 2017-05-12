@@ -1,68 +1,42 @@
-//dependencies
-var express = require('express');
+var express = require("express");
+//these may be redundant, will test if I have more time tomorrow
+var db = require("../models");
+var Burger = require("../models/burger.js")
+////////////////////////////////////////////
 var router = express.Router();
-var models = require('../models');
-var burger = require('../models/burger.js');
 
-var sequelizeConnection = models.sequelize;
-
-sequelizeConnection.sync();
-
-router.get('/', function(req,res) {
-  res.redirect('/index');
-});
-
-router.get('/index', function (req,res) {
-  console.log(JSON.req);
-  models.burgers.findAll({}).then(function(data){
-    var cheeseBurgers = {burger: data};
-    res.render('/index', cheeseBurgers);
+//findAll burgers and post them to their appropriate place in the window
+router.get("/", function(req, res) {
+  db.Burger.findAll({
+  }).then(function(data) {
+    var hbsObject = {
+      burgers: data
+    };
+    res.render("index", hbsObject);
   });
 });
 
-router.post('/burger/create', function(req,res) {
-  models.burgers.create({
-    burger_name: req.body.burger_name,
-    devoured: false
-  }
-).then(function(){
-  res.redirect('/index');
+//add a burger
+router.post("/burger/create", function(req, res) {
+  db.Burger.create({
+    burger_name: req.body.burger_name
+  }).then(function() {
+    res.redirect("/");
   });
 });
 
-router.post('/burger/eat/:id', function(req,res) {
-  models.burgers.findOne({where: {id: req.params.id}}).then(function(eaten){
-    eaten.update({
-      devoured: true,
-    }).then(function() {
-      res.redirect('/index');
-    });
+//devour a burger
+router.post("/burger/eat/:id", function(req, res) {
+  db.Burger.update({
+    devoured: true
+  }, {
+    where: {
+      id: req.params.id
+    }
+  }).then(function() {
+    res.redirect("/");
   });
 });
 
+// Export routes for server.js to use.
 module.exports = router;
-
-
-
-
-
-// // index page
-// router.get('/', function (req, res) {
-//   burger.selectAll(function(data) {
-//     var cheeseBurgers = { burgers: data };
-//     res.render('index', cheeseBurgers);
-//   });
-// });
-// // create a new burger
-// router.post('/burger/create', function (req, res) {
-//   burger.insertOne(req.body.burger_name, function() {
-//     res.redirect('/');
-//   });
-// });
-// // devour a burger
-// router.post('/burger/eat/:id', function (req, res) {
-//   burger.updateOne(req.params.id, function() {
-//     res.redirect('/');
-//   });
-// });
-// module.exports = router;

@@ -2,22 +2,18 @@
   "development": {
     "username": "root",
     "password": "basketball",
-    "database": "burgers_db",
+    "database": "sequelizedBurgers_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "basketball",
+    "database": "sequelizedBurgers_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "use_env_variable": "DATABASE_URL"
   }
 }

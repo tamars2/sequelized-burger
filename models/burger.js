@@ -1,18 +1,19 @@
-var sequelize = require('sequelize');
-
+//burger model
 module.exports = function(sequelize, DataTypes) {
-  var burgers = sequelize.define('burgers', {
-    burger_name: DataTypes.STRING,
-    devoured: DataTypes.BOOLEAN
-  }, {
-  	timestamps: false
+  var Burger = sequelize.define('Burger', {
+    burger_name: {
+    	type: DataTypes.STRING,
+    	alllowNull: false,
+    	validate: {
+    		len: [1]
+    	}
+    }, 
+    devoured: {
+    	type: DataTypes.BOOLEAN,
+    	allowNull: false,
+    	defaultValue: false
+  	}
+  	// timestamps: false
   });
-  return burgers;
+  return Burger;
 };
-
-// , {
-//     classMethods: {
-//       associate: function(models) {
-//         burgers.hasOne(models.devourers)
-//       }
-//     }
