@@ -23,7 +23,7 @@ var routes = require('./controllers/burgers_controller.js');
 app.use('/', routes);
 //sync the db.  app only works with force: true.. will test
 //more later if I have time
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync({}).then(function() {
 	app.listen(PORT, function() {
 		console.log("Listening on port: " + PORT);
 	});
